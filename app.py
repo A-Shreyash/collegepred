@@ -10,36 +10,36 @@ app = Flask(__name__)
 model = pickle.load(open("model1.pkl", "rb"))
 
 @app.route('/')
-def home():
-    return render_template('home.html')
+def index():
+    return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+# @app.route('/about')
+# def about():
+#     return render_template('about.html')
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')  
+# @app.route('/contact')
+# def contact():
+#     return render_template('contact.html')  
 
-@app.route('/colleges')
-def colleges():
-    return render_template('Top Colleges.html')     
+# @app.route('/colleges')
+# def colleges():
+#     return render_template('Top Colleges.html')     
 
-@app.route('/learn')
-def learn():
-    return render_template('Coding.html')     
+# @app.route('/learn')
+# def learn():
+#     return render_template('Coding.html')     
 
-@app.route('/support')
-def support():
-    return render_template('support.html')   
+# @app.route('/support')
+# def support():
+#     return render_template('support.html')   
 
-@app.route('/faq')
-def faq():
-    return render_template('faq.html')              
+# @app.route('/faq')
+# def faq():
+#     return render_template('faq.html')              
 
 
-@app.route('/predict', methods = ['POST'])
-def predict():
+@app.route('/result', methods = ['POST'])
+def result():
 
     Category = {'0':'General', '1':'Other Backward Classes-Non Creamy Layer', '6':'Scheduled Castes', '8':'Scheduled Tribes',
                 '3':'General & Persons with Disabilities', '5':'Other Backward Classes & Persons with Disabilities', 
@@ -52,9 +52,9 @@ def predict():
 
     Institute = {'0':'IIT', '1':'NIT'}
 
-    sa = gspread.service_account(filename="College.json")
-    sh = sa.open("College Data")
-    wks = sh.worksheet("Sheet1")
+    # sa = gspread.service_account(filename="College.json")
+    # sh = sa.open("College Data")
+    # wks = sh.worksheet("Sheet1")
 
     data = [x for x in request.form.values()]
     
@@ -66,8 +66,8 @@ def predict():
     list1[5] = Institute.get(list1[5])
 
     data.pop(0)
-    data.pop(0)
-    data.pop(7)
+    # data.pop(0)
+    # data.pop(0)
     data1 = [float(x) for x in data]
 
     final_output = np.array(data1).reshape(1, -1)
@@ -76,9 +76,9 @@ def predict():
     list1.append(output[0])
     list1.append(output[1])
     list1.append(output[2])
-    wks.append_row(list1, table_range="A2:M2")
+    # wks.append_row(list1, table_range="A2:M2")
 
-    return render_template("home.html", prediction_text = "College : {} ,  Degree : {} , Course : {}".format(output[0], output[1], output[2]), prediction = "Thank you, Hope this will match your requirement !!!")
+    return render_template("result.html", prediction_text = "College : {} ,  Degree : {} , Course : {}".format(output[0], output[1], output[2]), prediction = "Thank you, Hope this will match your requirement !!!")
 
 if __name__ == '__main__':
     app.run(debug = True)
