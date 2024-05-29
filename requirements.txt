@@ -1,7 +1,7 @@
 Flask
 numpy
 pandas
-sklearn
+scikit-learn
 matplotlib
 gspread
 gunicorn
