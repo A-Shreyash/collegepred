@@ -80,5 +80,5 @@ def result():
 
     return render_template("result.html", prediction_text = "College : {} ,  Degree : {} , Course : {}".format(output[0], output[1], output[2]), prediction = "Thank you, Hope this will match your requirement !!!")
 
-if __name__ == '__main__':
-    app.run(debug = True)
+# if __name__ == '__main__':
+#     app.run(debug = True)
