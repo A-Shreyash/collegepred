@@ -1,8 +1,29 @@
-<!doctype html>
-<html>
-   <body>
-       <h1> {{ prediction }}</h1>
-       <h1> {{ prediction_text}}</h1>
-       
-   </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+    <style>
+        body {
+            background: url('back.png') center/cover no-repeat;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.5); /* Fallback for older browsers */
+            background-blend-mode: overlay; /* Ensures the image blends with the background color */
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ prediction }}</h1>
+    <h1>{{ prediction_text }}</h1>
+</body>
 </html>
